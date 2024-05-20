@@ -1,4 +1,4 @@
-### 登录mgr PRIMARY节点，设置用户，并授权.
+### 一、登录mgr PRIMARY节点，设置用户，并授权.
 ```JavaScript
 CREATE USER 'monitor'@'%' IDENTIFIED BY "Test@123";
 GRANT ALL PRIVILEGES ON *.* TO 'monitor'@'%' ;
@@ -36,7 +36,7 @@ from performance_schema.replication_group_member_stats where member_id=my_id();$
 DELIMITER ;
 ```
 
-### 修改/etc/proxysql.cnf里面的用户密码,
+### 二、修改/etc/proxysql.cnf里面的用户密码,
 ```JavaScript
 [ -f "/var/lib/proxysql/proxysql.db" ] && rm -rf /var/lib/proxysql/proxysql.db    #如果第一次安装proxysql，这个proxysql.db文件还没生成，就不用执行.
 cat /etc/proxysql.cnf | grep -E "admin_credentials|monitor_password="
@@ -45,7 +45,7 @@ cat /etc/proxysql.cnf | grep -E "admin_credentials|monitor_password="
 systemctl restart proxysql
 ```
 
-### 设置插入mgr集群信息.
+### 三、设置插入mgr集群信息.
 ```JavaScript
 mysql -uadmin -p -h127.0.0.1 -P6032 -p'admin'
 insert into mysql_servers(hostgroup_id,hostname,port) values (10,'172.27.0.6',3306);
@@ -61,7 +61,7 @@ load mysql variables to runtime;
 save mysql variables to disk; 
 ```
 
-### 常用排查命令,用mysql -uadmin -p -h127.0.0.1 -P6032 -p'admin'进入proxysql查看.
+### 四、常用排查命令,用mysql -uadmin -p -h127.0.0.1 -P6032 -p'admin'进入proxysql查看.
 ```JavaScript
 select hostgroup_id, hostname, port,status from runtime_mysql_servers;
 select hostname,port,viable_candidate,read_only,transactions_behind,error from mysql_server_group_replication_log order by time_start_us desc limit 6;
@@ -74,7 +74,7 @@ select rule_id,active,match_digest,destination_hostgroup,apply from mysql_query_
 ```
 
 
-### 测试.
+### 五、测试.
 ```JavaScript
 #测试
 mysql -uproxysql -p'Test@123' -h172.27.0.6 -P6033
