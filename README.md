@@ -1,4 +1,4 @@
-### 一、登录mgr PRIMARY节点，设置用户，并授权.
+### 一、登录mgr PRIMARY节点，设置用户,授权，执行sql.
 ```JavaScript
 CREATE USER 'monitor'@'%' IDENTIFIED BY "Test@123";
 GRANT ALL PRIVILEGES ON *.* TO 'monitor'@'%' ;
