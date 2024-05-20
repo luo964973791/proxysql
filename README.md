@@ -38,7 +38,7 @@ DELIMITER ;
 
 ### 二、修改/etc/proxysql.cnf里面的用户密码,
 ```JavaScript
-[ -f "/var/lib/proxysql/proxysql.db" ] && rm -rf /var/lib/proxysql/proxysql.db    #如果第一次安装proxysql，这个proxysql.db文件还没生成，就不用执行.
+[ -f "/var/lib/proxysql/proxysql.db" ] && rm -rf /var/lib/proxysql/proxysql.db
 cat /etc/proxysql.cnf | grep -E "admin_credentials|monitor_password="
 	admin_credentials="admin:admin"
 	monitor_password="Test@123"
