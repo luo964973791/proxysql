@@ -48,6 +48,7 @@ systemctl restart proxysql
 ### 三、设置插入mgr集群信息.
 ```JavaScript
 mysql -uadmin -p -h127.0.0.1 -P6032 -p'admin'
+insert into mysql_servers(hostgroup_id,hostname,port) values (10,'172.27.0.5',3306);
 insert into mysql_servers(hostgroup_id,hostname,port) values (10,'172.27.0.6',3306);
 insert into mysql_servers(hostgroup_id,hostname,port) values (10,'172.27.0.7',3306);
 insert into mysql_users(username,password,active,default_hostgroup,transaction_persistent) values('proxysql','Test@123',1,10,1);
