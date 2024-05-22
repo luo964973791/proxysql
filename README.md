@@ -78,7 +78,7 @@ select rule_id,active,match_digest,destination_hostgroup,apply from mysql_query_
 ### 五、测试.
 ```JavaScript
 #测试
-mysql -uproxysql -p'Test@123' -h172.27.0.6 -P6033
+mysql -uproxysql -p'Test@123' -h 127.0.0.1 -P6033
 select @@hostname;
 select @@hostname for update;
 
